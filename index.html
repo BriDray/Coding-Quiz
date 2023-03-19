@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheet.css">
+    <title>CodingQuiz</title>
+</head>
+<body>
+    <header>
+        <!-- HIGH SCORES BTN -->
+        <button id= 'viewHighScores'>View High Scores</button>
+        <p style="display:none">Time:<span id="timerTag">0000</span></p>
+    </header>
+    <main>
+        <h1 id="title">Title written from JS</h1>
+        <p id="instructions">
+            Try to answer as many questions correctly as you can, before the time runs out!
+        </p>
+        <button id="startBtn">Start Quiz</button>
+        <ul>
+           <!-- QUIZ QUESTIONS FILLED BY JS -->
+        </ul>
+        <div id="submit-highscore-div">
+            <h1>Quiz is Complete!</h1>
+            <p>Your Final Score Is:<span id="scoreSpan">0000</span></p>
+            <div id="highscore-input-div">
+                <p>Enter Name:</p>
+                <input type="text" id="fname" name="fname" value="">
+                <button id="submitHighscoreBtn">Submit</button>
+            </div>
+        </div>
+        <!-- DISPLAY THE HIGH SCORES -->
+        <div id="display-highscore-div">
+            <h1>High Scores</h1>
+            <ol>
+                <!-- HIGH SCORES LIST FILLED BY JS-->
+            </ol>
+            <button id="goBackBtn">Go Back</button>
+            <button id="clearHighscoreBtn">Clear High Scores</button>
+        </div>
+    </main>
+    <script src="/script.js"></script>
+</body>
+</html>
