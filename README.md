@@ -14,4 +14,4 @@ Using the Coding Quiz is very simple! You can use it within the browser and foll
 ![Coding Quiz Screenshot](assets/ScreenshotWD.png?raw=true "Screenshot Coming Soon!")
 
 ## Github Link
-[View the Coding Quiz here!](https://bridray.github.io/Weather-Dashboard/)
+[View the Coding Quiz here!](https://bridray.github.io/Coding-Quiz/)
