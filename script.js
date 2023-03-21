@@ -1,7 +1,7 @@
 let timerTag = document.querySelector("#timerTag")
-let timerPTag = document.querySelector("header").children[1]
+let timerPTag = document.querySelector("header").children[0]
 let submitHighscoreBtn = document.querySelector('#submitHighscoreBtn')
-let viewHighscoresBtn = document.querySelector('#viewHighscoresBtn')
+// let viewHighscoresBtn = document.querySelector('#viewHighScores')
 let claerHighscoreBtn = document.querySelector('#clearHighscoreBtn')
 let answerBtnLst = document.body.querySelector('ul')
 let goBackHighscoreBtn = document.querySelector('#goBackBtn')
@@ -47,7 +47,6 @@ function setUpGame() {
     //Items needed for the main area
     titleTag.style.display = `block`; //Quiz title will be hidden
     document.querySelector(`#instructions`).style.display = `block`; //Instructions on main page
-    viewHighscoresBtn.style.display = `block`; //Highscores button gets hidden during quiz
     startBtn.style.display = `block`; //Show the Start Quiz button
 
     return;
@@ -59,7 +58,6 @@ function startGame() {
     questionIndexNumber = 0; //Keeps track of the current question number for question object
 
     //Clean up main div when game starts
-    viewHighscoresBtn.style.display = `none` //Hide viewscores during game
     startBtn.style.display = `none`; //Hide start quiz button dring game
     document.querySelector(`#instructions`).style.display = `none`; //Hide instructions during game
     timerPTag.style.display = `block`; //Display timer when game starts
@@ -99,7 +97,7 @@ function showQuestions(currentQuestionIndex) {
 
 //Creates new answer elements in the answer list and clears out previous answers
 function createAnswerElements(currentQuestionIndex) {
-    answerButtonLst.innerHTML = ''; //Clears current answers
+    answerBtnLst.innerHTML = ''; //Clears current answers
 
     for (let answerIndex = 0; answerIndex < questionObj.answers[currentQuestionIndex].length; answerIndex++) { //Loop through every answer
         var currentAnswerListItem = document.createElement(`li`); //Create new html <li>
@@ -112,7 +110,7 @@ function createAnswerElements(currentQuestionIndex) {
         }
 
         currentAnswerListItem.textContent = tempStr; //Temp check in case the string contains the `correct` answer tag and needs to be pulled out.
-        answerButtonLst.appendChild(currentAnswerListItem); //Adds answer to the <UL>
+        answerBtnLst.appendChild(currentAnswerListItem); //Adds answer to the <UL>
     }
 
     return;
@@ -138,7 +136,7 @@ function endGame() {
     //hide necessary elements
     timerPTag.style.display = `none`; //Hides timer
     titleTag.style.display = `none`; //Hides title
-    answerButtonLst.innerHTML = ''; //Clear this as no new question will be generated at the end of the game
+    answerBtnLst.innerHTML = ''; //Clear this as no new question will be generated at the end of the game
 
     //Show endscreen score and form to enter name for highscore in local storage
     document.querySelector(`#scoreSpan`).textContent = score; //Display score
@@ -150,7 +148,7 @@ function endGame() {
 
 //Function called on answer click
 function checkAnswer(event) {
-    if (event.target != answerButtonLst) { //Listening only for clicks on <li> not <ul>
+    if (event.target != answerBtnLst) { //Listening only for clicks on <li> not <ul>
         if (!(event.target.id.includes('correct'))) { //Check if this <li> includes correct:
             timeLeft -= 10; //Subtract 10 seconds if answer is not correct
         }
@@ -202,6 +200,9 @@ function storeScoreAndName() {
 //Call to show high scores
 function showHighscores() {
     //Hide these elements
+    // viewHighscoresBtn.addEventListener(`click`, showHighscores); //shows the highscores
+    // viewHighscoresBtn.style.display = `block`; //Highscores button gets hidden during quiz
+    
     titleTag.style.display = `none`; //hides title h1 tag
     startBtn.style.display = `none`; //hide start button when game starts
     document.querySelector(`header`).children[0].style.display = `none`; //hides the view highscore button but not header so formatting doesnt get weird
@@ -244,8 +245,7 @@ function clearHighscores() {
 function init() {
     //elements on DOM which are going to need an event listener
     startBtn.addEventListener(`click`, startGame); //button that starts the game
-    answerButtonLst.addEventListener(`click`, checkAnswer); //list that contains the answer <li> tags which are used as buttons
-    viewHighscoresBtn.addEventListener(`click`, showHighscores); //shows the highscores
+    answerBtnLst.addEventListener(`click`, checkAnswer); //list that contains the answer <li> tags which are used as buttons
     submitHighscoreBtn.addEventListener(`click`, storeScoreAndName); //submits highscores
     clearHighscoreBtn.addEventListener(`click`, clearHighscores); //clears localstorage
     goBackHighscoreBtn.addEventListener(`click`, setUpGame); //returns back to main screen to show start and instructions
